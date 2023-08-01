@@ -1,6 +1,6 @@
 # Pengenalan Awal Basis Data
 
-![Database Intro Banner](docs/images/Banner.jpg)
+![Database Intro Banner](docs/images/Banner.png)
 
 Selamat datang di repositori Pengenalan Awal Basis Data! Repositori ini berisi materi pengenalan tentang basis data, termasuk konsep dasar, tujuan, jenis-jenis basis data, serta peran dan manfaatnya dalam dunia teknologi informasi.
 

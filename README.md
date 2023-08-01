@@ -1,4 +1,4 @@
-# Pengenalan Awal Basis Data
+# Rangkuman materi basis data semester 4
 
 ![Database Intro Banner](docs/images/Banner.png)
 

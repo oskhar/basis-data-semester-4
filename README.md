@@ -2,9 +2,9 @@
 
 ![Database Intro Banner](docs/images/Banner.png)
 
-Selamat datang di repositori Pengenalan Awal Basis Data! Repositori ini berisi materi pengenalan tentang basis data, termasuk konsep dasar, tujuan, jenis-jenis basis data, serta peran dan manfaatnya dalam dunia teknologi informasi.
+Selamat datang di repositori! Repositori ini berisi rangkuman materi saya tentang basis data lanjutan, termasuk konsep dasar, tujuan, jenis-jenis basis data, serta peran dan manfaatnya dalam dunia teknologi informasi.
 
-## Apa itu Basis Data?
+## Pemahaman awal
 
 Basis data adalah koleksi terstruktur dari informasi yang disimpan dalam suatu sistem komputer. Informasi ini dapat berupa data yang terkait, seperti fakta, angka, teks, gambar, audio, video, dan lain-lain. Basis data dirancang untuk menyimpan, mengelola, dan mengorganisir informasi dengan efisien dan terstruktur.
 

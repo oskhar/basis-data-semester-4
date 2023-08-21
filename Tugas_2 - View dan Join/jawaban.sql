@@ -1,15 +1,12 @@
 -- =+=+= START DATABASE =+=+=
-CREATE DATABASE db_music;
-
--- Membuat database musik
-create database db_musik;
+CREATE DATABASE db_musik;
 
 -- Menggunakan database musuk
-use db_musik;
+USE db_musik;
 
 -- ===== START TABEL REKAMAN =====
-create table tb_rekaman(
-	id_rekaman INT(111) NOT NULL AUTO_INCREMENT,
+CREATE TABLE tb_rekaman(
+	id_rekaman INT(11) NOT NULL AUTO_INCREMENT,
 	nama_rekaman VARCHAR(255) NOT NULL,
 	created_at DATETIME NOT NULL DEFAULT GETDATE(),
 	updated_at DATETIME NULL,
@@ -18,8 +15,8 @@ create table tb_rekaman(
     PRIMARY KEY (id_rekaman)
 );
 -- Menambahkan data
-insert into tb_rekaman (id_rekaman, nama_rekaman, created_at, status_data)
-	values
+INSERT INTO tb_rekaman (id_rekaman, nama_rekaman, created_at, status_data)
+	VALUES
 		(1, 'Alfa Records', NOW(), 'Aktif'),
 		(2, 'Aquarius Musikindo', NOW(), 'Aktif'),
 		(3, 'Bahaya Records', NOW(), 'Aktif'),
@@ -32,12 +29,12 @@ insert into tb_rekaman (id_rekaman, nama_rekaman, created_at, status_data)
 		(10, 'Indie Label', NOW(), 'Aktif');
 		
 -- Melihat isi data
-select * from tb_rekaman;
+SELECT * FROM tb_rekaman;
 -- ===== END TABEL REKAMAN =====
 
 -- ===== START TABEL ARTIS =====
-create table tb_artis(
-	id_artis INT(111) NOT NULL AUTO_INCREMENT,
+CREATE TABLE tb_artis(
+	id_artis INT(11) NOT NULL AUTO_INCREMENT,
 	nama_artis VARCHAR(255) NOT NULL,
 	keterangan VARCHAR(255) NOT NULL,
 	created_at DATETIME NOT NULL DEFAULT GETDATE(),
@@ -47,8 +44,8 @@ create table tb_artis(
     PRIMARY KEY (id_artis)
 );
 -- Menambahkan data
-insert into tb_artis (id_artis, nama_artis, keterangan, created_at, status_data)
-	values
+INSERT INTO tb_artis (id_artis, nama_artis, keterangan, created_at, status_data)
+	VALUES
 		(1, 'Tipe-X', 'Grup Musik', NOW(), 'Aktif'),
 		(2, 'Souljah', 'Grup Musik', NOW(), 'Aktif'),
 		(3, 'Tony Q Rastafara', 'Penyanyi Solo', NOW(), 'Aktif'),
@@ -57,13 +54,13 @@ insert into tb_artis (id_artis, nama_artis, keterangan, created_at, status_data)
 		(6, 'Gigi', 'Grup Musik', NOW(), 'Aktif');
 
 -- Melihat isi data
-select * from tb_artis;
+SELECT * FROM tb_artis;
 -- ===== END TABEL ARTIS =====
 
 -- ===== START TABEL ARTIS =====
-create table tb_detail_artis(
-	id_detail_artis INT(111) NOT NULL AUTO_INCREMENT,
-	id_artis INT(111) NOT NULL,
+CREATE TABLE tb_detail_artis(
+	id_detail_artis INT(11) NOT NULL AUTO_INCREMENT,
+	id_artis INT(11) NOT NULL,
 	nama_asli VARCHAR(255) NOT NULL,
 	tempat_lahir VARCHAR(255) NOT NULL,
 	tanggal_lahir VARCHAR(255) NOT NULL,
@@ -74,9 +71,9 @@ create table tb_detail_artis(
 	status_data VARCHAR(255) NULL
 );
 -- Menambahkan data
-insert into
+INSERT INTO
 	tb_detail_artis (id_detail_artis, id_artis, nama_asli, tempat_lahir, tanggal_lahir, instrument, created_at, status_data)
-		values
+		VALUES
 			-- tipe x
 			(1, 1, 'Tresno Riandi', 'Jakarta', '1975-09-28', 'Vocal', NOW(), 'Aktif'),
 			(2, 1, 'Billy', 'Jakarta', '1977-10-19', 'Gitar', NOW(), 'Aktif'),
@@ -108,11 +105,11 @@ insert into
 			
 
 -- Melihat isi data
-select * from tb_detail_artis order by id_artis asc;
+SELECT * FROM tb_detail_artis order by id_artis asc;
 -- ===== END TABEL ARTIS =====
 
 -- ===== START TABEL GENRE =====
-create table tb_genre(
+CREATE TABLE tb_genre(
 	id_genre INT(11) NOT NULL,
 	nama_genre VARCHAR(255) NOT NULL,
 	created_at DATETIME NOT NULL DEFAULT GETDATE(),
@@ -121,8 +118,8 @@ create table tb_genre(
 	status_data VARCHAR(255) NULL
 );
 -- Menambahkan data
-insert into tb_genre (id_genre, nama_genre, created_at, status_data)
-	values
+INSERT INTO tb_genre (id_genre, nama_genre, created_at, status_data)
+	VALUES
 		(1, 'SKA', NOW(), 'Aktif'),
 		(2, 'Rocksteady', NOW(), 'Aktif'),
 		(3, 'Reggae', NOW(), 'Aktif'),
@@ -136,11 +133,11 @@ insert into tb_genre (id_genre, nama_genre, created_at, status_data)
 		(11, 'Electronic Music Dance', NOW(), 'Aktif');
 
 -- Melihat isi data
-select * from tb_genre order by id_genre;
+SELECT * FROM tb_genre order by id_genre;
 -- ===== END TABEL GENRE =====
 
 -- ===== START TABEL ALBUM =====
-create table tb_album(
+CREATE TABLE tb_album(
 	id_album INT(11) NOT NULL,
 	id_artis INT(11) NOT NULL,
 	id_rekaman INT(11) NOT NULL,
@@ -153,8 +150,8 @@ create table tb_album(
 	status_data VARCHAR(255) NULL
 );
 -- Menambahkan data
-insert into tb_album (id_album, id_artis, id_rekaman, id_genre, nama_album, rilis, created_at, status_data)
-	values
+INSERT INTO tb_album (id_album, id_artis, id_rekaman, id_genre, nama_album, rilis, created_at, status_data)
+	VALUES
 		(1,1,2,1,'SKA Phobia','1999',NOW(),'Aktif'),
 		(2,2,3,3,'Breaking The Roots','2005',NOW(),'Aktif'),
 		(3,2,3,3,'Bersamamu','2007',NOW(),'Aktif'),
@@ -162,11 +159,11 @@ insert into tb_album (id_album, id_artis, id_rekaman, id_genre, nama_album, rili
 		(5,2,3,3,'This Is Souljah','2014',NOW(),'Aktif'),
 		(6,3,10,3,'Presiden','2009',NOW(),'Aktif');
 -- melihat isi data
-select * from tb_album;
+SELECT * FROM tb_album;
 -- ===== END TABEL ALBUM =====
 
 -- ===== START TABEL LAGU =====
-create table tb_lagu(
+CREATE TABLE tb_lagu(
 	id_lagu INT(11) NOT NULL,
 	id_album INT(11) NOT NULL,
 	nama_lagu VARCHAR(255) NOT NULL,
@@ -178,8 +175,8 @@ create table tb_lagu(
 	status_data VARCHAR(255) NULL
 );
 -- Menambahkan data
-insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
-	values
+INSERT INTO tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
+	VALUES
 		(1, 1, 'Angan', '00:03:17', 'Hits', NOW(), 'Aktif'),
 		(2, 1, 'Frustasi', '00:04:51', '', NOW(), 'Aktif'),
 		(3, 1, 'Genit', '00:04:11', 'Hits', NOW(), 'Aktif'),
@@ -192,8 +189,8 @@ insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_a
 		(10, 1, 'Song From Distance', '00:02:57', '', NOW(), 'Aktif');
 		
 -- Lagu Souljah - Breaking The Roots
-insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
-	values
+INSERT INTO tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
+	VALUES
 		(11, 2, 'Listen to Do Islan', '00:03:35', '', NOW(), 'Aktif'),
 		(12, 2, 'Magenta Feat Happy Salma', '00:03:46', '', NOW(), 'Aktif'),
 		(13, 2, 'Mati Menahan Rindu', '00:03:28', '', NOW(), 'Aktif'),
@@ -208,8 +205,8 @@ insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_a
 		(22, 2, 'Mahalo Feat Popok', '00:03:14', '', NOW(), 'Aktif');
 
 -- Lagu Souljah - Bersamamu
-insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
-	values
+INSERT INTO tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
+	VALUES
 		(23, 3, 'I am Free', '00:03:44', 'Hits', NOW(), 'Aktif'),
 		(24, 3, 'I Love Myself', '00:03:24', '', NOW(), 'Aktif'),
 		(25, 3, 'Devilish Angel', '00:03:50', '', NOW(), 'Aktif'),
@@ -224,8 +221,8 @@ insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_a
 		(34, 3, 'Bersamamu', '00:03:58', 'Hits', NOW(), 'Aktif');
 		
 -- Lagu Souljah - Mestakung
-insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
-	values
+INSERT INTO tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
+	VALUES
 		(35, 4, 'Loving Hand', '00:03:26', '', NOW(), 'Aktif'),
 		(36, 4, 'Tak Selalu', '00:03:46', 'Hits', NOW(), 'Aktif'),
 		(37, 4, 'Please', '00:04:20', '', NOW(), 'Aktif'),
@@ -240,8 +237,8 @@ insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_a
 		(46, 4, 'Sudah Sudahlah', '00:04:08', '', NOW(), 'Aktif');
 
 -- Lagu Souljah - This Is Souljah
-insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
-	values
+INSERT INTO tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
+	VALUES
 		(47, 5, 'Move On', '00:04:41', 'Hits', NOW(), 'Aktif'),
 		(48, 5, 'Bilang I Love You', '00:03:57', 'Hits', NOW(), 'Aktif'),
 		(49, 5, 'Jatah Mantan', '00:03:31', '', NOW(), 'Aktif'),
@@ -261,8 +258,8 @@ insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_a
 		(63, 5, 'I Will Be Home', '00:02:58', '', NOW(), 'Aktif');
 
 -- Lagu Tony Q Rastafara - Presiden
-insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
-	values
+INSERT INTO tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)
+	VALUES
 		(64, 6, 'Republik Sulap', '00:03:15', 'Hits', NOW(), 'Aktif'),
 		(65, 6, 'Lop Song', '00:03:15', '', NOW(), 'Aktif'),
 		(66, 6, 'Bla Bla Bla', '00:02:50', '', NOW(), 'Aktif'),
@@ -276,5 +273,5 @@ insert into tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_a
 		
 		
 -- melihat data lagu
-select * from tb_lagu;
+SELECT * FROM tb_lagu;
 -- ===== END TABEL LAGU =====

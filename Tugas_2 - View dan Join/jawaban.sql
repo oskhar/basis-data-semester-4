@@ -4,14 +4,24 @@ CREATE DATABASE db_musik;
 -- Menggunakan database musuk
 USE db_musik;
 
+-- =+=+= DROP ALL TABLE =+=+=
+DROP TABLE tb_rekaman;
+DROP TABLE tb_artis;
+DROP TABLE tb_detail_artis;
+DROP TABLE tb_genre;
+DROP TABLE tb_album;
+DROP TABLE tb_lagu;
+
 -- ===== START TABEL REKAMAN =====
+DROP TABLE tb_rekaman;
+-- Membuat tabel
 CREATE TABLE tb_rekaman(
 	id_rekaman INT(11) NOT NULL AUTO_INCREMENT,
 	nama_rekaman VARCHAR(255) NOT NULL,
-	created_at DATETIME NOT NULL DEFAULT GETDATE(),
+	created_at DATETIME NOT NULL DEFAULT NOW(),
 	updated_at DATETIME NULL,
     deleted_at DATETIME NULL,
-	status_data VARCHAR(255) NULL,
+	status_data VARCHAR(255) NOT NULL DEFAULT "Aktif" CHECK (status_data IN ("Aktif", "Tidak Aktif")),
     PRIMARY KEY (id_rekaman)
 );
 -- Menambahkan data
@@ -33,14 +43,16 @@ SELECT * FROM tb_rekaman;
 -- ===== END TABEL REKAMAN =====
 
 -- ===== START TABEL ARTIS =====
+DROP TABLE tb_artis;
+-- Membuat tabel
 CREATE TABLE tb_artis(
 	id_artis INT(11) NOT NULL AUTO_INCREMENT,
 	nama_artis VARCHAR(255) NOT NULL,
 	keterangan VARCHAR(255) NOT NULL,
-	created_at DATETIME NOT NULL DEFAULT GETDATE(),
+	created_at DATETIME NOT NULL DEFAULT NOW(),
 	updated_at DATETIME NULL,
     deleted_at DATETIME NULL,
-	status_data VARCHAR(255) NULL,
+	status_data VARCHAR(255) NOT NULL DEFAULT "Aktif" CHECK (status_data IN ("Aktif", "Tidak Aktif")),
     PRIMARY KEY (id_artis)
 );
 -- Menambahkan data
@@ -58,6 +70,8 @@ SELECT * FROM tb_artis;
 -- ===== END TABEL ARTIS =====
 
 -- ===== START TABEL ARTIS =====
+DROP TABLE tb_detail_artis;
+-- Membuat tabel
 CREATE TABLE tb_detail_artis(
 	id_detail_artis INT(11) NOT NULL AUTO_INCREMENT,
 	id_artis INT(11) NOT NULL,
@@ -65,10 +79,11 @@ CREATE TABLE tb_detail_artis(
 	tempat_lahir VARCHAR(255) NOT NULL,
 	tanggal_lahir VARCHAR(255) NOT NULL,
 	instrument VARCHAR(255) NOT NULL,
-	created_at DATETIME NOT NULL DEFAULT GETDATE(),
+	created_at DATETIME NOT NULL DEFAULT NOW(),
 	updated_at DATETIME NULL,
     deleted_at DATETIME NULL,
-	status_data VARCHAR(255) NULL
+	status_data VARCHAR(255) NOT NULL DEFAULT "Aktif" CHECK (status_data IN ("Aktif", "Tidak Aktif")),
+    PRIMARY KEY (id_detail_artis)
 );
 -- Menambahkan data
 INSERT INTO
@@ -109,13 +124,16 @@ SELECT * FROM tb_detail_artis order by id_artis asc;
 -- ===== END TABEL ARTIS =====
 
 -- ===== START TABEL GENRE =====
+DROP TABLE tb_genre;
+-- Membuat tabel
 CREATE TABLE tb_genre(
-	id_genre INT(11) NOT NULL,
+	id_genre INT(11) NOT NULL AUTO_INCREMENT,
 	nama_genre VARCHAR(255) NOT NULL,
-	created_at DATETIME NOT NULL DEFAULT GETDATE(),
+	created_at DATETIME NOT NULL DEFAULT NOW(),
 	updated_at DATETIME NULL,
     deleted_at DATETIME NULL,
-	status_data VARCHAR(255) NULL
+	status_data VARCHAR(255) NOT NULL DEFAULT "Aktif" CHECK (status_data IN ("Aktif", "Tidak Aktif")),
+    PRIMARY KEY (id_genre)
 );
 -- Menambahkan data
 INSERT INTO tb_genre (id_genre, nama_genre, created_at, status_data)
@@ -137,17 +155,20 @@ SELECT * FROM tb_genre order by id_genre;
 -- ===== END TABEL GENRE =====
 
 -- ===== START TABEL ALBUM =====
+DROP TABLE tb_album;
+-- Membuat tabel
 CREATE TABLE tb_album(
-	id_album INT(11) NOT NULL,
+	id_album INT(11) NOT NULL AUTO_INCREMENT,
 	id_artis INT(11) NOT NULL,
 	id_rekaman INT(11) NOT NULL,
 	id_genre INT(11) NOT NULL,
 	nama_album VARCHAR(255) NOT NULL,
 	rilis year NOT NULL, -- default format time YYYY:mm:dd
-	created_at DATETIME NOT NULL DEFAULT GETDATE(),
+	created_at DATETIME NOT NULL DEFAULT NOW(),
 	updated_at DATETIME NULL,
     deleted_at DATETIME NULL,
-	status_data VARCHAR(255) NULL
+	status_data VARCHAR(255) NOT NULL DEFAULT "Aktif" CHECK (status_data IN ("Aktif", "Tidak Aktif")),
+    PRIMARY KEY (id_album)
 );
 -- Menambahkan data
 INSERT INTO tb_album (id_album, id_artis, id_rekaman, id_genre, nama_album, rilis, created_at, status_data)
@@ -163,16 +184,19 @@ SELECT * FROM tb_album;
 -- ===== END TABEL ALBUM =====
 
 -- ===== START TABEL LAGU =====
+DROP TABLE tb_lagu;
+-- Membuat tabel
 CREATE TABLE tb_lagu(
-	id_lagu INT(11) NOT NULL,
+	id_lagu INT(11) NOT NULL AUTO_INCREMENT,
 	id_album INT(11) NOT NULL,
 	nama_lagu VARCHAR(255) NOT NULL,
 	keterangan VARCHAR(255) NOT NULL,
 	durasi time NOT NULL, -- default format time HH:mm:ss
-	created_at DATETIME NOT NULL DEFAULT GETDATE(),
+	created_at DATETIME NOT NULL DEFAULT NOW(),
 	updated_at DATETIME NULL,
     deleted_at DATETIME NULL,
-	status_data VARCHAR(255) NULL
+	status_data VARCHAR(255) NOT NULL DEFAULT "Aktif" CHECK (status_data IN ("Aktif", "Tidak Aktif")),
+    PRIMARY KEY (id_lagu)
 );
 -- Menambahkan data
 INSERT INTO tb_lagu (id_lagu, id_album, nama_lagu, durasi, keterangan, created_at, status_data)

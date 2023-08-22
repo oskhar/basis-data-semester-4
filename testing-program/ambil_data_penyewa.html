@@ -32,83 +32,85 @@
     <script>
         // Create the XMLHttpRequest object.
         const xhr = new XMLHttpRequest();
-        // Initialize the request
-        xhr.open("GET", 'http://localhost/myApp/testing-program/api_penyewa.php');
-        // Send the request
-        xhr.send();
-        // Fired once the request completes successfully 
-        xhr.onload = function(e) {
-            // Check if the request was a success
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                // Element table
-                const myTable = document.getElementById('myTable');
-                var tr, td;
-                // Get and convert the responseText into JSON
-                var response = JSON.parse(xhr.responseText);
-                console.log(response);
-                for (let i = 0; i < response.length; i++) {
-                    tr = document.createElement('tr');
+        function getDataPenyewa(range) {
+            // Initialize the request
+            xhr.open("GET", 'http://localhost/myApp/testing-program/api_penyewa.php?range=0');
+            // Send the request
+            xhr.send();
+            // Fired once the request completes successfully 
+            xhr.onload = function(e) {
+                // Check if the request was a success
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    // Element table
+                    const myTable = document.getElementById('myTable');
+                    var tr, td;
+                    // Get and convert the responseText into JSON
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response);
+                    for (let i = 0; i < response.length; i++) {
+                        tr = document.createElement('tr');
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['nik'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['nik'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['nama'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['nama'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['tempat_lahir'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['tempat_lahir'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['tanggal_lahir'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['tanggal_lahir'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['jenis_kelamin'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['jenis_kelamin'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['alamat'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['alamat'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['agama'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['agama'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['status_pernikahan'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['status_pernikahan'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['pekerjaan'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['pekerjaan'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['kewarganegaraan'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['kewarganegaraan'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['created_at'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['created_at'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['updated_at'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['updated_at'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['deleted_at'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['deleted_at'];
+                        tr.appendChild(td);
 
-                    td = document.createElement('td');
-                    td.innerText = response[i]['status_data'];
-                    tr.appendChild(td);
+                        td = document.createElement('td');
+                        td.innerText = response[i]['status_data'];
+                        tr.appendChild(td);
 
-                    myTable.appendChild(tr);
+                        myTable.appendChild(tr);
+                    }
+                } else {
+                    error();
                 }
-            } else {
-                console.log('error');
             }
         }
     </script>

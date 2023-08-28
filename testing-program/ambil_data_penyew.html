@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>#paggination{float: left;}</style>
+</head>
+<body>
+    <table border="1" cellpadding="10" cellspacing="0" id="myTable">
+        <thead>
+            <tr>
+                <th>no</th>
+                <th>nik</th>
+                <th>nama</th>
+                <th>tanggal_lahir</th>
+                <th>jenis_kelamin</th>
+                <th>alamat</th>
+                <th>kewarganegaraan</th>
+                <th>status_data</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <div id="paggination"></div>
+    <script>// Function to fetch and display data
+        function fetchDataAndDisplay(halaman) {
+            fetch('http://localhost/myApp/basis-data-semester-4/testing-program/api_penyewa.php?halaman=' + halaman)
+                .then(response => response.json())
+                .then(data => {
+                    const myTable = document.querySelector('#myTable tbody');
+                    myTable.innerHTML = "";
+        
+                    for (let i = 0; i < data.length; i++) {
+                        const rowData = data[i];
+                        const tr = document.createElement('tr');
+                        let td;
+        
+                        // Create and append table cells for each data field
+                        const fieldNames = ['nik', 'nama', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'kewarganegaraan', 'status_data'];
+
+                        td = document.createElement('td');
+                        td.innerText = i;
+                        tr.appendChild(td);
+
+                        for (const fieldName of fieldNames) {
+                            td = document.createElement('td');
+                            td.innerText = rowData[fieldName];
+                            tr.appendChild(td);
+                        }
+        
+                        myTable.appendChild(tr);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+        
+        // Function to generate pagination buttons
+        function generatePaginationButtons(totalPages) {
+            const paggination = document.getElementById('paggination');
+            paggination.innerHTML = "";
+
+            for (let i = 0; i < totalPages; i++) {
+                const button = document.createElement('button');
+                button.innerText = i + 1;
+                button.addEventListener('click', () => handlePaginationClick(i));
+                paggination.appendChild(button);
+            }
+        }
+
+        // Handle pagination button click
+        function handlePaginationClick(pageNumber) {
+            fetchDataAndDisplay(pageNumber);
+        }
+        
+        // Function to get total count of data and initiate fetching
+        function getCountDataAndFetch() {
+            fetch('http://localhost/myApp/basis-data-semester-4/testing-program/api_jumlah_penyewa.php')
+                .then(response => response.json())
+                .then(data => {
+                    const totalPages = Math.ceil(data / 100);
+                    generatePaginationButtons(totalPages);
+                    fetchDataAndDisplay(0); // Fetch and display initial data
+                })
+                .catch(error => {
+                    console.error('Error fetching data count:', error);
+                });
+        }
+        
+        // Initialize by calling the function
+        getCountDataAndFetch();        
+    </script>
+</body>
+</html>

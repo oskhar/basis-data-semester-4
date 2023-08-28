@@ -28,9 +28,10 @@ USE belajar_basisdata
     -- Isi data pada table
     INSERT INTO pegawai (id_pegawai, username, password, nama_pegawai, tempat_lahir, tanggal_lahir, jenis_kelamin, alamat, no_telp, jabatan, created_at, updated_at, deleted_at, status_data) 
         VALUES 
-            (1 , 'oskhar', 'testing', 'muh oskhar', 'jakarta', '2003-04-9', 'pria', 'jakarta barat', '0987634567', 'mahasiswa', NOW(), NULL, NULL, 'aktif'),
-            (2 , 'faiz', 'testing', 'muh oskhar', 'jakarta', '2003-04-9', 'pria', 'jakarta barat', '0987634567', 'mahasiswa', NOW(), NULL, NULL, 'aktif'),
-            (3 , 'vallendra', 'testing', 'muh oskhar', 'jakarta', '2003-04-9', 'pria', 'jakarta barat', '0987634567', 'mahasiswa', NOW(), NULL, NULL, 'aktif');
+            (1 , 'oskhar', 'testing', 'muh oskhar', 'jakarta', '2003-04-9', 'pria', 'jakarta barat', '0987634567', 'pegawai', NOW(), NULL, NULL, 'aktif'),
+            (2 , 'faiz', 'testing', 'muh oskhar', 'jakarta', '2003-04-9', 'pria', 'jakarta barat', '0987634567', 'pegawai', NOW(), NULL, NULL, 'aktif'),
+            (3 , 'vallendra', 'testing', 'muh oskhar', 'jakarta', '2003-04-9', 'pria', 'jakarta barat', '0987634567', 'pegawai', NOW(), NULL, NULL, 'aktif'),
+            (4 , 'william afton', 'testing', 'muh oskhar', 'jakarta', '2003-04-9', 'pria', 'jakarta barat', '0987634567', 'pemilik', NOW(), NULL, NULL, 'aktif');
 
     -- Hapus semua data dalam tabel
     TRUNCATE TABLE pegawai; 
